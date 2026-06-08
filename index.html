@@ -23,7 +23,6 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: default;
         }
 
         body {
@@ -70,14 +69,14 @@
             flex-direction: column;
         }
 
-        /* Hardware Accelerated Scroll Reveal Architecture */
+        /* Continuous Bi-Directional High-Fidelity Scroll Transitions */
         .ios-scroll-reveal {
             opacity: 0;
-            transform: translateY(45px);
-            filter: blur(12px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(40px);
+            filter: blur(10px);
+            transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+                        transform 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+                        filter 0.85s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform, opacity, filter;
         }
 
@@ -108,6 +107,9 @@
         }
 
         .dock-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--ios-liquid-glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -119,7 +121,32 @@
             color: var(--text-secondary);
             font-weight: 500;
             letter-spacing: -0.01em;
+            text-decoration: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .dock-pill:hover {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(0, 122, 255, 0.25);
+            color: var(--text-primary);
+        }
+
+        /* Native Apple SF Symbols Vector Icon Metrics */
+        .sf-symbol {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: var(--text-tertiary);
+            stroke-width: 2px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+            transition: stroke 0.3s ease;
+        }
+
+        .dock-pill:hover .sf-symbol {
+            stroke: var(--system-blue);
         }
 
         /* Core Apple Layout Typography */
@@ -325,10 +352,22 @@
         <header class="ios-scroll-reveal">
             <h1>Ejiro Emmanuel</h1>
             <div class="meta-dock">
-                <div class="dock-pill">📍 London, United Kingdom</div>
-                <div class="dock-pill">✉️ ejiro.emmanuel.dev@gmail.com</div>
-                <div class="dock-pill">📞 +447481783640</div>
-                <div class="dock-pill">💻 github.com/ejiro-dev</div>
+                <span class="dock-pill">
+                    <svg class="sf-symbol" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                    London, United Kingdom
+                </span>
+                <a href="mailto:ejiro.emmanuel.dev@gmail.com" class="dock-pill">
+                    <svg class="sf-symbol" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4l8 5 8-5M4 18h16V9l-8 5-8-5v9z"/></svg>
+                    ejiro.emmanuel.dev@gmail.com
+                </a>
+                <a href="tel:+447481783640" class="dock-pill">
+                    <svg class="sf-symbol" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +447481783640
+                </a>
+                <a href="https://github.com/ejiro-dev" target="_blank" rel="noopener noreferrer" class="dock-pill">
+                    <svg class="sf-symbol" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6M14 4l-4 16"/></svg>
+                    github.com/ejiro-dev
+                </a>
             </div>
         </header>
 
@@ -434,24 +473,26 @@
         </footer>
     </div>
 
-    <!-- iOS 26 Scroll Velocity Intersection Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const targets = document.querySelectorAll('.ios-scroll-reveal');
             
-            const layoutObserver = new IntersectionObserver((entries) => {
+            const continuousObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                    } else {
+                        // Toggles visibility back off when element exits bounds, ensuring dynamic execution on reverse scroll
+                        entry.target.classList.remove('is-visible');
                     }
                 });
             }, {
-                threshold: 0.05, // Emits fade reveal physics as soon as 5% clears the viewport edge
-                rootMargin: '0px 0px -40px 0px'
+                threshold: 0.05, // Retrigger transition vectors dynamically at 5% screen boundaries
+                rootMargin: '0px 0px -20px 0px'
             });
 
             targets.forEach(target => {
-                layoutObserver.observe(target);
+                continuousObserver.observe(target);
             });
         });
     </script>
