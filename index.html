@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejiro Emmanuel | AI Alignment & Software Architecture</title>
+    <!-- iOS 26 Safari Liquid Glass Toolbar Integration -->
+    <meta name="theme-color" content="#000000">
+    <title>Ejiro Emmanuel | Portfolio</title>
     <style>
         :root {
             --system-bg: #000000;
-            --glass-element: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-border-bright: rgba(255, 255, 255, 0.2);
-            --accent-blue: #007aff;
-            --accent-cyan: #5ac8fa;
-            --accent-purple: #af52de;
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.65);
-            --text-tertiary: rgba(255, 255, 255, 0.4);
-            --system-green: #34c759;
-            --system-red: #ff3b30;
+            --text-tertiary: rgba(255, 255, 255, 0.35);
+            --system-blue: #007aff;
+            --system-cyan: #5ac8fa;
+            --system-purple: #af52de;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -32,7 +30,7 @@
             color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
             min-height: 100vh;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -40,66 +38,70 @@
             position: relative;
         }
 
-        /* Ambient Liquid Glows Integrated into Canvas Depth */
+        /* iOS 26 Dynamic Fluid Background Elements */
         body::before {
             content: "";
             position: fixed;
-            top: -25%;
+            top: -10%;
             left: -10%;
-            width: 130%;
-            height: 130%;
+            width: 120%;
+            height: 120%;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(90, 200, 250, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 70%, rgba(175, 82, 222, 0.08) 0%, transparent 45%);
-            filter: blur(120px);
+                radial-gradient(circle at 10% 20%, rgba(90, 200, 250, 0.09) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(175, 82, 222, 0.09) 0%, transparent 45%);
+            filter: blur(100px);
             z-index: -1;
             pointer-events: none;
         }
 
-        .scroll-wrapper {
+        .canvas-wrapper {
             width: 100%;
-            max-width: 800px;
+            max-width: 760px;
             display: flex;
             flex-direction: column;
         }
 
-        /* Premium Scroll Animation Classes */
-        .scroll-animate {
+        /* High-Fidelity iOS 26 Scroll Fade & Refraction Entry Animations */
+        .ios-scroll-reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform, opacity;
+            transform: translateY(35px);
+            filter: blur(10px);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
         }
 
-        .scroll-animate.is-visible {
+        .ios-scroll-reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0);
         }
 
-        /* Header Layout */
+        /* Header Setup */
         header {
-            margin-bottom: 6rem;
+            margin-bottom: 7rem;
+            width: 100%;
         }
 
         header h1 {
-            font-size: 4.25rem;
+            font-size: 4.5rem;
             font-weight: 700;
             letter-spacing: -0.05em;
-            background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.55) 100%);
+            background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.6) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
         }
 
-        .contact-dock {
+        .meta-dock {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .dock-pill {
-            background: var(--glass-element);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--glass-border);
             padding: 0.5rem 1.2rem;
             border-radius: 14px;
@@ -107,13 +109,13 @@
             color: var(--text-secondary);
             font-weight: 500;
             letter-spacing: -0.01em;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         /* Sections */
         section {
-            margin-bottom: 6rem;
+            margin-bottom: 6.5rem;
             width: 100%;
         }
 
@@ -123,117 +125,112 @@
             letter-spacing: 0.06em;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 2.25rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 0.5rem;
         }
 
-        .overview-text {
-            font-size: 1.35rem;
+        .summary-block {
+            font-size: 1.4rem;
             line-height: 1.65;
             color: var(--text-secondary);
             letter-spacing: -0.02em;
             font-weight: 400;
         }
 
-        /* Core Technical Competencies Grid Layout */
-        .competency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+        /* Core Technical Competencies Layout */
+        .competency-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .liquid-tile {
-            background: var(--glass-element);
-            backdrop-filter: blur(30px) saturate(210%);
-            -webkit-backdrop-filter: blur(30px) saturate(210%);
-            border: 1px solid var(--glass-border);
-            border-top: 1px solid var(--glass-border-bright);
-            padding: 2rem;
-            border-radius: 22px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            transition: border-color 0.3s ease, transform 0.3s ease;
+        .competency-row {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        .liquid-tile:hover {
-            border-color: rgba(255, 255, 255, 0.25);
+        .competency-row:last-child {
+            border-bottom: none;
         }
 
-        .liquid-tile h3 {
-            font-size: 1.15rem;
+        .competency-row h3 {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.01em;
         }
 
-        .liquid-tile p {
+        .competency-row p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             line-height: 1.6;
         }
 
-        /* Architecture Experience Layout */
-        .exp-stack {
+        /* Experience and Education Architecture */
+        .block-container {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 4.5rem;
         }
 
-        .exp-card {
-            position: relative;
+        .content-block {
+            width: 100%;
         }
 
-        .exp-header {
+        .block-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
-        .exp-title {
-            font-size: 1.5rem;
+        .block-title {
+            font-size: 1.65rem;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
 
-        .exp-meta {
-            font-size: 0.9rem;
+        .block-meta {
+            font-size: 0.95rem;
             color: var(--text-tertiary);
             font-weight: 500;
         }
 
-        .exp-list {
+        .bullet-list {
             list-style: none;
         }
 
-        .exp-list li {
-            font-size: 1.05rem;
+        .bullet-list li {
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            line-height: 1.65;
-            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1.5rem;
         }
 
-        .exp-list li::before {
+        .bullet-list li::before {
             content: "—";
             position: absolute;
             left: 0;
             color: var(--text-tertiary);
         }
 
-        /* Sandbox Matrix Widget */
-        .matrix-widget {
+        /* Outlier Optimization Matrix Element */
+        .matrix-element {
             background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
             margin-top: 1rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .matrix-title {
+        .matrix-header {
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -241,15 +238,15 @@
             margin-bottom: 1.25rem;
         }
 
-        .split-viewport {
+        .viewport-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.25rem;
             margin-bottom: 1.25rem;
         }
 
-        .code-box {
-            background: #05050a;
+        .terminal-box {
+            background: #040408;
             border: 1px solid var(--glass-border);
             padding: 1.25rem;
             border-radius: 14px;
@@ -257,10 +254,7 @@
             font-size: 0.85rem;
         }
 
-        .code-box.pass-state { border-color: rgba(52, 199, 89, 0.3); }
-        .code-box.fail-state { border-color: rgba(255, 59, 48, 0.3); }
-
-        .status-pill {
+        .status-tag {
             display: inline-block;
             font-size: 0.75rem;
             padding: 0.15rem 0.5rem;
@@ -268,85 +262,76 @@
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
-        .status-pill.pass { background: rgba(52, 199, 89, 0.12); color: var(--system-green); }
-        .status-pill.fail { background: rgba(255, 59, 48, 0.12); color: var(--system-red); }
+        .status-tag.valid { background: rgba(52, 199, 89, 0.12); color: #34c759; }
+        .status-tag.invalid { background: rgba(255, 59, 48, 0.12); color: #ff3b30; }
 
-        .eval-justification {
+        .rationale-text {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             padding-top: 1.25rem;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        footer {
-            margin-top: 6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 2.5rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-tertiary);
-        }
-
         @media (max-width: 640px) {
-            header h1 { font-size: 2.75rem; }
-            body { padding: 4rem 1rem; }
-            .split-viewport { grid-template-columns: 1fr; }
+            header h1 { font-size: 3rem; }
+            body { padding: 5rem 1.25rem; }
+            .viewport-split { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="scroll-wrapper">
+    <div class="canvas-wrapper">
         
-        <header class="scroll-animate">
+        <header class="ios-scroll-reveal">
             <h1>Ejiro Emmanuel</h1>
-            <div class="contact-dock">
+            <div class="meta-dock">
                 <div class="dock-pill">📍 London, United Kingdom</div>
                 <div class="dock-pill">✉️ ejiro.emmanuel.dev@gmail.com</div>
                 <div class="dock-pill">📞 +447481783640</div>
             </div>
         </header>
 
-        <section class="scroll-animate">
+        <section class="ios-scroll-reveal">
             <h2>Summary</h2>
-            <p class="overview-text">
+            <p class="summary-block">
                 Rigorous and detail-driven Computer Science specialist focusing on algorithm design, code evaluation, and software quality assurance. Expert in analyzing codebase behavior, executing complex runtime diagnostics, and delivering structured, high-fidelity technical evaluations. Proficient at breaking down sophisticated programming concepts, identifying structural code vulnerabilities, and generating algorithmic "golden responses." Explicitly positioned to evaluate, test, and optimize large language models (LLMs) via multi-step technical rubrics and advanced Reinforcement Learning from Human Feedback (RLHF) frameworks.
             </p>
         </section>
 
-        <section class="scroll-animate">
+        <section class="ios-scroll-reveal">
             <h2>Core Technical Competencies</h2>
-            <div class="competency-grid">
-                <div class="liquid-tile">
-                    <h3 style="color: var(--system-cyan);">Programming Languages</h3>
+            <div class="competency-stack">
+                <div class="competency-row">
+                    <h3 style="color: var(--system-cyan);">Core Programming Languages</h3>
                     <p>Python (Advanced), Java, C++, JavaScript, TypeScript, SQL, Go</p>
                 </div>
-                <div class="liquid-tile">
+                <div class="competency-row">
                     <h3 style="color: var(--system-purple);">Technical Domains</h3>
                     <p>Data Structures & Algorithms, Object-Oriented Programming (OOP), Computational Logic, Systems Architecture, Code Review & Verification</p>
                 </div>
-                <div class="liquid-tile">
+                <div class="competency-row">
                     <h3 style="color: var(--system-cyan);">AI Training Frameworks</h3>
                     <p>Reinforcement Learning from Human Feedback (RLHF), Prompt Engineering, Response Evaluation, Linters & Semantic Checks, Rubric-Based Logic Auditing</p>
                 </div>
-                <div class="liquid-tile">
+                <div class="competency-row">
                     <h3 style="color: var(--system-purple);">Analysis & Diagnostics</h3>
                     <p>Complexity Estimation (Big-O notation), Edge-Case Vulnerability Auditing, Code Optimization, Technical Documentation</p>
                 </div>
             </div>
         </section>
 
-        <section class="scroll-animate">
+        <section class="ios-scroll-reveal">
             <h2>Professional Experience</h2>
-            <div class="exp-stack">
+            <div class="block-container">
                 
-                <div class="exp-card">
-                    <div class="exp-header">
-                        <div class="exp-title">Technical AI Coder & Model Evaluator</div>
-                        <div class="exp-meta">Advanced Technical Data Platforms | 2025 – Present</div>
+                <div class="content-block">
+                    <div class="block-header">
+                        <div class="block-title">Technical AI Coder & Model Evaluator</div>
+                        <div class="block-meta">Advanced Technical Data Platforms | 2025 – Present</div>
                     </div>
-                    <ul class="exp-list">
+                    <ul class="bullet-list">
                         <li>Formulate precise, multi-turn technical prompts across a wide variance of computer science domains to evaluate the logical limits of generative AI architectures.</li>
                         <li>Audit, rank, and critique AI-generated source code for semantic accuracy, performance bottlenecks, syntax compliance, and structural edge cases.</li>
                         <li>Author clear, exhaustive code justifications and "golden responses"—crafting the ideal algorithmic solutions to act as ground-truth training data for foundational models.</li>
@@ -354,13 +339,13 @@
                     </ul>
                 </div>
 
-                <div class="exp-card">
-                    <div class="exp-header">
-                        <div class="exp-title">Software Engineer / Technical Code Reviewer</div>
-                        <div class="exp-meta">Remote Technical Consultancies | 2024 – 2025</div>
+                <div class="content-block">
+                    <div class="block-header">
+                        <div class="block-title">Software Engineer / Technical Code Reviewer</div>
+                        <div class="block-meta">Remote Technical Consultancies | 2024 – 2025</div>
                     </div>
-                    <ul class="exp-list">
-                        <li>Conduct deep-dive code reviews and refactoring across diverse software applications, ensuring execution pipelines strictly adhered to memory efficiency and security standards.</li>
+                    <ul class="bullet-list">
+                        <li>Conducted deep-dive code reviews and refactoring across diverse software applications, ensuring execution pipelines strictly adhered to memory efficiency and security standards.</li>
                         <li>Diagnosed and resolved subtle runtime defects, synchronization deadlocks, and algorithmic errors in complex application layers.</li>
                         <li>Translated high-level computational requirements into concrete, maintainable, and thoroughly documented code structures.</li>
                         <li>Analyzed code execution paths using Big-O time and space complexity models to streamline latency-heavy backend tasks.</li>
@@ -370,52 +355,62 @@
             </div>
         </section>
 
-        <section class="scroll-animate">
-            <h2>AI Alignment Evaluation Framework</h2>
-            <div class="matrix-widget">
-                <div class="matrix-title" style="color: var(--system-cyan);">Target Directive: Evaluate O(N log N) sorting logic optimization templates.</div>
-                
-                <div class="split-viewport">
-                    <div class="code-box pass-state">
-                        <span class="status-pill pass">Response Alpha</span>
-                        <p style="color: #a6e22e;"># Time Optimization<br>sorted(data.items(), key=lambda x: x[1])</p>
+        <!-- ALGORITHMIC IMPRESSOR ELEMENT -->
+        <section class="ios-scroll-reveal">
+            <h2>Evaluation Sandbox Integration</h2>
+            <div class="matrix-element">
+                <div class="matrix-header" style="color: var(--system-cyan);">Target Rule Check: Dictionary value space transformation tracking</div>
+                <div class="viewport-split">
+                    <div class="terminal-box" style="border-color: rgba(52,199,89,0.3);">
+                        <span class="status-tag valid">Response Alpha</span>
+                        <p style="color: #a6e22e;">sorted(data.items(), key=lambda x: x[1])</p>
                     </div>
-                    <div class="code-box fail-state">
-                        <span class="status-pill fail">Response Beta</span>
-                        <p style="color: #f92672;"># Efficiency Regress<br># Nested looping structural flaw</p>
+                    <div class="terminal-box" style="border-color: rgba(255,59,48,0.3);">
+                        <span class="status-tag invalid">Response Beta</span>
+                        <p style="color: #f92672;"># Quadratic parsing error loops found</p>
                     </div>
                 </div>
-
-                <div class="eval-justification">
-                    <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem;">Alignment Justification:</strong>
-                    Response Alpha satisfies all processing bounds by natively relying on linear-ithmic time scales ($O(n \log n)$). Response Beta fails optimization thresholds by introducing an unchecked quadratic processing pattern ($O(n^2)$), triggering system scaling timeouts under testing limits.
+                <div class="rationale-text">
+                    <strong style="color: #ffffff; display: block; margin-bottom: 0.5rem;">Algorithmic Justification Metrics:</strong>
+                    Response Alpha satisfies operational thresholds by relying on stable linear-ithmic execution paths ($O(n \log n)$). Response Beta breaches system bounds by executing an unindexed quadratic loop model ($O(n^2)$), causing timeout constraints during heavy execution diagnostics.
                 </div>
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2026 Ejiro Emmanuel. Verification Done.</p>
-        </footer>
+        <section class="ios-scroll-reveal">
+            <h2>Education</h2>
+            <div class="block-container">
+                <div class="content-block">
+                    <div class="block-header">
+                        <div class="block-title">B.Sc. in Computer Science</div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li><strong>Core Focus Areas:</strong> Advanced Data Structures & Algorithms, Systems Programming, Computer Logic Design, Database Management Systems, Discrete Mathematics.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Apple-Grade Hardware Accelerated Scroll Trigger Engine -->
+    <!-- iOS 26 High-Saturate Scroll Animation Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.scroll-animate');
+            const revealTargets = document.querySelectorAll('.ios-scroll-reveal');
             
-            const scrollObserver = new IntersectionObserver((entries) => {
+            const viewportObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                     }
                 });
             }, {
-                threshold: 0.08, // Element reveals as soon as 8% enters the viewport
-                rootMargin: '0px 0px -40px 0px' // Offset to ensure a clean reveal flow
+                threshold: 0.1, // Fires smoothly as 10% of element crosses the edge
+                rootMargin: '0px 0px -50px 0px'
             });
 
-            animatedElements.forEach(element => {
-                scrollObserver.observe(element);
+            revealTargets.forEach(target => {
+                viewportObserver.observe(target);
             });
         });
     </script>
