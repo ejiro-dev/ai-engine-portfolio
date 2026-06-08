@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejiro Emmanuel | AI Alignment & Software Architecture</title>
+    <style>
+        :root {
+            --ios-glass: rgba(255, 255, 255, 0.02);
+            --ios-glass-active: rgba(255, 255, 255, 0.06);
+            --ios-border: rgba(255, 255, 255, 0.12);
+            --ios-border-specular: rgba(255, 255, 255, 0.3);
+            --system-cyan: #5ac8fa;
+            --system-purple: #af52de;
+            --system-green: #34c759;
+            --system-red: #ff3b30;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.65);
+            --text-tertiary: rgba(255, 255, 255, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+        }
+
+        body {
+            background: #020205;
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1.5rem;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Intense Liquid Mesh Animation Layer */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: 
+                radial-gradient(circle at 10% 15%, rgba(90, 200, 250, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 90% 85%, rgba(175, 82, 222, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.12) 0%, transparent 50%);
+            filter: blur(100px);
+            z-index: -1;
+            animation: liquidMovement 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes liquidMovement {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(3%, 5%) rotate(5deg) scale(1.08); }
+            100% { transform: translate(-2%, -3%) rotate(-3deg) scale(0.95); }
+        }
+
+        /* Liquid Glass Main Panel Container */
+        .glass-container {
+            width: 100%;
+            max-width: 860px;
+            background: var(--ios-glass);
+            backdrop-filter: blur(50px) saturate(240%);
+            -webkit-backdrop-filter: blur(50px) saturate(240%);
+            border: 1px solid var(--ios-border);
+            border-top: 1px solid var(--ios-border-specular);
+            border-radius: 28px;
+            padding: 4rem;
+            box-shadow: 
+                0 40px 90px rgba(0, 0, 0, 0.85),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                inset 0 0 50px rgba(255, 255, 255, 0.03);
+        }
+
+        header {
+            margin-bottom: 4rem;
+        }
+
+        header h1 {
+            font-size: 3.75rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .ios-pill-container {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .ios-pill {
+            background: var(--ios-glass-active);
+            border: 1px solid var(--ios-border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .ios-pill.accent {
+            background: rgba(90, 200, 250, 0.1);
+            border-color: rgba(90, 200, 250, 0.3);
+            color: var(--system-cyan);
+            font-weight: 600;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-text {
+            font-size: 1.25rem;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            letter-spacing: -0.02em;
+        }
+
+        /* Grid Engine layout */
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--ios-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1.75rem;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.15, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            background: var(--ios-glass-active);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.015);
+        }
+
+        .glass-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .glass-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Experience Rows */
+        .exp-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .exp-row {
+            position: relative;
+            padding-left: 1.75rem;
+        }
+
+        .exp-row::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            bottom: -3.5rem;
+            width: 1px;
+            background: linear-gradient(180deg, var(--system-purple) 0%, transparent 100%);
+        }
+
+        .exp-row:last-child::before { display: none; }
+
+        .exp-dot {
+            position: absolute;
+            left: -4px;
+            top: 0.4rem;
+            width: 9px;
+            height: 9px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffffff, 0 0 6px var(--system-purple);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exp-title { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+        .exp-meta { font-size: 0.9rem; color: var(--text-tertiary); font-weight: 500; }
+
+        .exp-bullets { list-style: none; }
+        .exp-bullets li {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .exp-bullets li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--system-purple);
+            font-weight: bold;
+        }
+
+        /* OUTLIER IMPRESSOR: Sandbox Simulation Widget */
+        .sandbox-widget {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--ios-border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .sandbox-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .model-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--ios-border);
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+        }
+
+        .model-box.correct { border-color: rgba(52, 199, 89, 0.4); }
+        .model-box.failed { border-color: rgba(255, 59, 48, 0.4); }
+        
+        .badge-status {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .badge-status.pass { background: rgba(52, 199, 89, 0.15); color: var(--system-green); }
+        .badge-status.fail { background: rgba(255, 59, 48, 0.15); color: var(--system-red); }
+
+        .justification-box {
+            border-left: 2px solid var(--system-cyan);
+            padding-left: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            .glass-container { padding: 2rem; border-radius: 20px; }
+            header h1 { font-size: 2.5rem; }
+            .model-split { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <header>
+            <h1>Ejiro Emmanuel</h1>
+            <div class="ios-pill-container">
+                <div class="ios-pill accent">iOS 26 Architecture Engine</div>
+                <div class="ios-pill">📍 London, United Kingdom</div>
+                <div class="ios-pill">✉️ ejiro.emmanuel.dev@gmail.com</div>
+                <div class="ios-pill">📞 +447481783640</div>
+            </div>
+        </header>
+
+        <section>
+            <h2>System Overview</h2>
+            <p class="summary-text">
+                Rigorous and detail-driven Computer Science specialist focusing on algorithm design, code evaluation, and software quality assurance. Expert in analyzing codebase behavior, executing complex runtime diagnostics, and delivering structured, high-fidelity technical evaluations. Proficient at breaking down sophisticated programming concepts, identifying structural code vulnerabilities, and generating algorithmic "golden responses." Explicitly positioned to evaluate, test, and optimize large language models (LLMs) via multi-step technical rubrics and advanced Reinforcement Learning from Human Feedback (RLHF) frameworks.
+            </p>
+        </section>
+
+        <section>
+            <h2>Core Technical Competencies</h2>
+            <div class="competency-grid">
+                <div class="glass-card">
+                    <h3 style="color: var(--system-cyan);">Programming Languages</h3>
+                    <p>Python (Advanced), Java, C++, JavaScript, TypeScript, SQL, Go</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: var(--system-purple);">Technical Domains</h3>
+                    <p>Data Structures & Algorithms, Object-Oriented Programming (OOP), Computational Logic, Systems Architecture, Code Review & Verification</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: var(--system-cyan);">AI Training Frameworks</h3>
+                    <p>Reinforcement Learning from Human Feedback (RLHF), Prompt Engineering, Response Evaluation, Linters & Semantic Checks, Rubric-Based Logic Auditing</p>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: var(--system-purple);">Analysis & Diagnostics</h3>
+                    <p>Complexity Estimation (Big-O notation), Edge-Case Vulnerability Auditing, Code Optimization, Technical Documentation</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Implementations</h2>
+            <div class="exp-container">
+                
+                <div class="exp-row">
+                    <div class="exp-dot"></div>
+                    <div class="exp-header">
+                        <div class="exp-title">Technical AI Coder & Model Evaluator</div>
+                        <div class="exp-meta">Advanced Technical Data Platforms | 2025 – Present</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Formulate precise, multi-turn technical prompts across a wide variance of computer science domains to evaluate the logical limits of generative AI architectures.</li>
+                        <li>Audit, rank, and critique AI-generated source code for semantic accuracy, performance bottlenecks, syntax compliance, and structural edge cases.</li>
+                        <li>Author clear, exhaustive code justifications and "golden responses"—crafting the ideal algorithmic solutions to act as ground-truth training data for foundational models.</li>
+                        <li>Utilize rigid evaluation rubrics to check system responses for factual grounding, completeness, logical reasoning loops, and code hallucination bugs.</li>
+                    </ul>
+                </div>
+
+                <div class="exp-row">
+                    <div class="exp-dot"></div>
+                    <div class="exp-header">
+                        <div class="exp-title">Software Engineer / Technical Code Reviewer</div>
+                        <div class="exp-meta">Remote Technical Consultancies | 2024 – 2025</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Conduct deep-dive code reviews and refactoring across diverse software applications, ensuring execution pipelines strictly adhered to memory efficiency and security standards.</li>
+                        <li>Diagnosed and resolved subtle runtime defects, synchronization deadlocks, and algorithmic errors in complex application layers.</li>
+                        <li>Translated high-level computational requirements into concrete, maintainable, and thoroughly documented code structures.</li>
+                        <li>Analyzed code execution paths using Big-O time and space complexity models to streamline latency-heavy backend tasks.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OUTLIER ALGORITHM TRIGGER: Live Demo Evaluation Matrix -->
+        <section>
+            <h2>Live AI Evaluation & Alignment Sandbox</h2>
+            <p class="summary-text" style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-tertiary);"> Simulated prompt evaluation demonstrating deep verification and rubric alignment capabilities.</p>
+            
+            <div class="sandbox-widget">
+                <div class="sandbox-header" style="color: var(--system-cyan);">Target Prompt: "Optimize sorting dictionary items by value in O(N log N) time."</div>
+                
+                <div class="model-split">
+                    <div class="model-box correct">
+                        <span class="badge-status pass">Model Response A</span>
+                        <p style="color: #a6e22e;"># Optimal execution<br>sorted(d.items(), key=lambda x: x[1])</p>
+                    </div>
+                    <div class="model-box failed">
+                        <span class="badge-status fail">Model Response B</span>
+                        <p style="color: #f92672;"># Nested complexity bug<br># Introduces O(N^2) latency</p>
+                    </div>
+                </div>
+
+                <div class="justification-box">
+                    <strong style="color: #ffffff; display: block; margin-bottom: 0.25rem;">Expert Rationale & Justification:</strong>
+                    Model Response A is logically superior. It fulfills all explicit architectural constraints by executing sorting transformations with an optimal time complexity of O(N log N) via Timsort. Conversely, Model Response B introduces an unacceptable performance bottleneck due to a nested iterative loop pattern, regressing complexity metrics to an inefficient quadratic O(N^2) profile.
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Designed under iOS 26 High-Saturate Fluid Specification Systems. Verification Complete.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
